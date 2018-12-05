@@ -1,0 +1,25 @@
+{
+  "name": "discode",
+  "version": "1.0.0",
+  "description": "DisCode Bot, Bot officiel du serveur DisCode.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite-pool": "^0.1.2",
+    "discord.js": "^11.4.2",
+    "enmap": "^4.2.0",
+    "enmap-level": "^2.1.0",
+    "eval-overflow": "^1.1.3",
+    "fortnite": "^4.1.1",
+    "fs": "0.0.1-security",
+    "hastebin-generator": "^1.1.4",
+    "mathjs": "^5.1.1",
+    "moment": "^2.22.2",
+    "spotify": "^0.3.0",
+    "weather-js": "^2.0.0"
+  }
+}
