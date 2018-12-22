@@ -13,13 +13,13 @@ exports.run = (client, message, args) => {
     if(!args[0]) {
         return message.channel.send("Veuillez préciser un rôle.")
     }
-    else if(message.guild.roles.some(role => role.id === args[0])) {
+    else if(message.guild.roles.some(role => role.id === args[0].toLowerCase())) {
         rl = message.guild.roles.get(args[0])
     }
     else if(message.mentions.roles.first()) {
         rl = message.mentions.roles.first()
     }
-    else if(message.guild.roles.some(role => role.name === args[0])) {
+    else if(message.guild.roles.some(role => role.name === args[0].toLowerCase())) {
         rl = message.guild.roles.find(role => role.name === args[0])
     }
     else if(rl === undefined) {

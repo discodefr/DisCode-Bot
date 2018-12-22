@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
     else if(message.mentions.members.first()) {
         usr = message.mentions.members.first()
     }
-    else if(message.guild.members.some(usr => usr.user.username === args.join(" "))) {
+    else if(message.guild.members.some(usr => usr.user.username === args.join(" ").toLowerCase())) {
         usr = message.guild.members.find(usr => usr.user.username === args.join(" "))
     }
     else if(usr === undefined) {

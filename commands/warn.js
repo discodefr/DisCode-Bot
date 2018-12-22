@@ -4,8 +4,7 @@ moment.locale('fr')
 
 exports.run = (client, message, args) => {
 
-    let currentdate = new Date
-    let cdf = moment(currentdate).format(`dddd Do MMMM YYYY, HH:mm:ss`);
+    let cdf = moment(new Date).format(`dddd Do MMMM YYYY, HH:mm:ss`);
     var warndate = cdf.substring(0, 1).toLocaleUpperCase() + cdf.substring(1);
 
     if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.channel.send("Vous n'avez pas la permission d'avertir des membres.")
@@ -26,7 +25,9 @@ exports.run = (client, message, args) => {
         return message.channel.send("L'utilisateur demandé n'existe pas. Essayez avec l'identifiant, le nom ou la mention.")
     }
 
+
     if(!defineduser) return message.channel.send("Merci de préciser le membre à avertir.")
+    if(defineduser.id === message.author.id) return message.channel.send("Tu peux pas te warn toi-même xD")
     if(!defineduser.kickable) return message.channel.send("Vous ne pouvez pas avertir cet utilisateur.")
 
     let raison = message.content.split(" ").slice(2).join(" ");

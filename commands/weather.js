@@ -1,13 +1,18 @@
-const weather = require('weather-js')
-const Discord = require('discord.js')
+const weather = require('weather-js');
+const Discord = require('discord.js');
+const moment = require('moment');
 
 exports.run = (client, message, args) => {
     
-    weather.find({search: args, degreeType: 'C'}, function(err, result) {
+    String.prototype.capitalize = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+
+    weather.find({search: args.join(' '), degreeType: 'C'}, function(err, result) {
         if(err) message.channel.send(err);
 
         if(result.length === 0) {
-            message.channel.send("Merci de rentrer une localisation valable.")
+            message.channel.send("Localisation non valable. Merci de fournir plus de détails (Numéro ou nom de département...).")
             return;
         }
         
@@ -15,15 +20,18 @@ exports.run = (client, message, args) => {
         var location = result[0].location
         var forecast = result[0].forecast
 
+        var datef = moment(message.createdAt).format('dddd Do MMMM YYYY');
+        var datefr = datef.substring(0,1).toLocaleUpperCase() + datef.substring(1);
+
         if(!location.alert) {
             location.alert = "Pas d'alerte."
         }
 
         let weatherembd = new Discord.RichEmbed()
             .setColor('186bbe')
-            .setTitle("Météo à " + current.observationpoint, true)
-            .addField('Jour', current.day, true)
-            .addField('Date', current.date, true)
+            .setTitle("Météo à " + location.name.capitalize(), true)
+            .addField('Jour', current.day.capitalize(), true)
+            .addField('Date', datefr, true)
             .addField("Température", current.temperature + "°C", true)
             .addField('Ressenti', current.feelslike + "°C", true)
             .addField("Vitesse du vent", current.windspeed, true)
@@ -32,8 +40,8 @@ exports.run = (client, message, args) => {
             .addField('Humidité', current.humidity + "%", true)
             .addField('Alerte', location.alert, true)
             .addField('Type de degrés', "°" + location.degreetype, true)
-            .addField('Heure d\'\observation', current.observationtime, true)
-            .addField('Point d\'\observation', current.observationpoint, true)
+            .addField('Heure d\'observation', current.observationtime, true)
+            .addField('Point d\'observation', current.observationpoint, true)
             .setThumbnail(current.imageUrl)
             .setTimestamp(new Date)
             .setFooter(client.user.username, client.user.avatarURL)
@@ -42,7 +50,11 @@ exports.run = (client, message, args) => {
 }
 
 exports.help = {
-    name: "weather"
+    name: "weather",
+    description: 'Donne la météo à un point précis.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*',
+    utilis: `Pour chercher la météo, faites\n\n\`{guildprefix}weather (endroit dans le monde)\``,
+    examples: `\`{guildprefix}weather Paris\`\n\`{guildprefix}weather Tokyo, Japan\``,
+    thumbn: 'https://lh3.googleusercontent.com/ElyVRhaEtXxCJDG7k0wtgvX9ahYRt_Q3skYBE6K5xyFnkqPLw6xZkvRafrUj4cztAEs'
 }
 
 exports.conf = {

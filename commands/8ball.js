@@ -30,7 +30,12 @@ exports.run = (client, message, args) => {
 
 }
 exports.help = {
-    name: "8ball"
+    name: "8ball",
+    description: 'Envoie une réponse aléatoire à votre question.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*',
+    utilis: 'Veuilez bien respecter l\'espace entre la question et le point d\'interrogation. Veuillez poser des questions fermées de préférence.\n\n`{guildprefix}8ball (question)`',
+    examples: '`{guildprefix}8ball Est-ce que le JS est mieux que le Python ?`',
+    thumbn: 'http://www.pages.drexel.edu/~cjb356/cs164/lab8/8ball.png'
+
 }
 
 exports.conf = {

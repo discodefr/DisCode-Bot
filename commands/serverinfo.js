@@ -9,11 +9,17 @@ exports.run = (client, message) => {
     }
 
     var orderroles = message.guild.roles.sort((x,y)=> y.position - x.position).map(role=> role.name).join(', ');
-    if(message.guild.roles.length > 20) {
+    if(orderroles.value > 15) {
         orderroles = `Trop de rôles. (${roles.length})`
     }
+
     var linecount = message.guild.members.filter(onlinesize => onlinesize.presence.status === "online")
     var allbots = message.guild.members.filter(sizebots => sizebots.user.bot === true)
+
+    var emotelist = message.guild.emojis.array().join(" ");
+    if(message.guild.emojis.array().length < 40) {
+        emotelist = `Trop d'émojis. (${message.guild.emojis.length})`;
+    }
 
         let servercreatedatef = moment(message.guild.createdAt).format("DD/MM/YY HH:mm:ss");
         let servercreatedatefr = servercreatedatef.substring(0,1).toLocaleUpperCase() + servercreatedatef.substring(1);
@@ -32,8 +38,8 @@ exports.run = (client, message) => {
             .addField("Nombre de rôles ", message.guild.roles.size, true)
             .addField('Création du serveur ', servercreatedatefr, true)
             .addField('Région du serveur ', message.guild.region, true)
-            .addField('Liste des rôles', orderroles)
-            .addField("Liste des emojis", message.guild.emojis.array().join(" "))
+            //.addField('Liste des rôles', orderroles)
+            //.addField("Liste des emojis", emotelist)
             .setFooter(client.user.username, client.user.avatarURL)
         message.channel.send(si_embed)
 

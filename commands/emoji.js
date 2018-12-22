@@ -45,6 +45,8 @@ exports.conf = {
 
 exports.help = {
     name: "emoji",
-    description: "Montrer les infos d'un emoji",
-    usage: "=emoji <emoji>"
+    description: "Montre des informations sur un emoji précisé.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*",
+    utilis: "Pour avoir des informations sur un emoji, faites :\n\n`{guildprefix}emoji (emoji)`",
+    examples: "`{guildprefix}emoji <:vsc:483265175688970250>`",
+    thumbn: "https://p0.storage.canalblog.com/06/21/1301665/99112564_o.png"
 };

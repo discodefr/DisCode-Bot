@@ -47,7 +47,10 @@ exports.run = (client, message, args) => {
 
 exports.help = {
     name: "channelinfo",
-    description: "Donne des infot sur les canaux"
+    description: "Donne des infos sur le channel précisé.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*",
+    utilis: "Pour utiliser cette commande, faites :\n\n`{guildprefix}channelinfo (#channel)`",
+    examples: "{guildprefix}channelinfo #règlement",
+    thumbn: 'https://p0.storage.canalblog.com/06/21/1301665/99112564_o.png'
 }
 
 exports.conf = {

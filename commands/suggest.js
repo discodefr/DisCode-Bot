@@ -1,40 +1,45 @@
 const Discord = require('discord.js')
+const fs = require('fs')
 const moment = require("moment")
 moment.locale("fr")
 
 exports.run = (client, message, args) => {
     
-    var guildprefix = client.prefixes.get(message.guild.id);
+    client.prefdb = JSON.parse(fs.readFileSync('./databases/prefixes.json', "utf8"))
+    client.suggestchannels = JSON.parse(fs.readFileSync('./databases/suggestchannels.json', "utf8"))
+    var guildprefix = client.prefdb[message.guild.id].prefix;
 
     String.prototype.capitalize = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
     if(!args[0]) {
-        if(!client.suggestchannels.has(message.guild.id)) return message.channel.send("Les suggestions ne sont pas activées sur ce serveur.")
-        if(client.suggestchannels.has(message.guild.id)) return message.channel.send("Merci d'entrer une suggestion.")
+        if(client.suggestchannels[message.guild.id]) return message.channel.send("Merci d'entrer une suggestion.")
 
-        if(!client.suggestchannels.has(message.guild.id)) return message.channel.send("Ce serveur n'a pas de salon de channel de suggestions défini. Faites `" + guildprefix + "suggest channel #channel` pour en définir un.")
-
+        if(!client.suggestchannels[message.guild.id] && message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("Ce serveur n'a pas de salon de channel de suggestions défini. Faites `" + guildprefix + "suggest channel #channel` pour en définir un.")
+        if(!client.suggestchannels[message.guild.id]) return message.channel.send("Les suggestions ne sont pas activées sur ce serveur.")
     }
 
     if(args[0] === "disable") {
         if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return message.channel.send("Vous ne pouvez pas effectuer cette commande.")
-        if(!client.suggestchannels.has(message.guild.id)) return message.channel.send(`${message.author.username}, un channel de suggestions n'est pas défini sur ce serveur, vous n'avez donc pas besoin d'effectuer cette commande.`)
-        client.suggestchannels.delete(message.guild.id)
+        if(!client.suggestchannels[message.guild.id]) return message.channel.send(`${message.author.username}, un channel de suggestions n'est pas défini sur ce serveur, vous n'avez donc pas besoin d'effectuer cette commande.`)
+        client.suggestchannels[message.guild.id] = undefined;
+        fs.writeFileSync('./databases/suggestchannels.json', JSON.stringify(client.suggestchannels, null, 2), (err) => { 
+            console.log(err)
+        });
         return message.channel.send("Channel de suggestions désactivé.")
     }
 
     if(args[0] === "channel") {
 
-        if(!args[1]) return message.channel.send(`${message.author.username}, merci de préciser le channel à configurer.`)
+        if(!args[1] && !client.suggestchannels[message.guild.id]) return message.channel.send(`${message.author.username}, merci de préciser le channel à configurer.`)
 
-        if(client.suggestchannels.has(message.guild.id)) {
-            const chaid = client.suggestchannels.get(message.guild.id, "channelid")
+        if(!args[1] && client.suggestchannels[message.guild.id]) {
+            const chaid = client.suggestchannels[message.guild.id].channelid
             return message.channel.send(`Le salon de suggestions est défini en <#${chaid}> sur ce serveur. Pour le changer, faites \`${guildprefix}suggest channel #channel\`.`)
         }
         
-        const margs = args.slice(1).join(` `);
+        const margs = args.slice(1).join(' ');
         var chnl;
 
         if(message.guild.channels.some(channl => channl.id === margs)) {
@@ -51,16 +56,21 @@ exports.run = (client, message, args) => {
         }   
 
         message.channel.send(`Salon de suggestions défini en <#${chnl.id}>.`)
-        client.suggestchannels.set(message.guild.id, {
+        client.suggestchannels[message.guild.id] = {
             channelname: chnl.name,
             channelid: chnl.id
-        })
+        }
+
+        fs.writeFileSync('./databases/suggestchannels.json', JSON.stringify(client.suggestchannels, null, 2), (err) => { 
+            console.log(err)
+        });
+
         return;
     }
 
-    const chaid = client.suggestchannels.get(message.guild.id, "channelid")
 
-    if(!client.suggestchannels.has(message.guild.id)) return message.channel.send("Les suggestions ne sont pas activées sur ce serveur.")
+    if(!client.suggestchannels[message.guild.id]) return message.channel.send("Les suggestions ne sont pas activées sur ce serveur.")
+    const chaid = client.suggestchannels[message.guild.id].channelid
     const suggestion = args.join(" ")
 
     let datef = moment(message.createdAt).format('dddd Do MMMM YYYY, HH:mm:ss');

@@ -58,11 +58,15 @@ exports.run = (client, message, args) => {
 }
 
 exports.help = {
-    name: "ban"
+    name: "ban",
+    description: 'Ban un utilisateur du serveur. Demande les permissions BAN_MEMBERS.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*',
+    utilis: 'Pour bannir un membre, faites :\n\n`{guildprefix}ban (@user) [raison]`',
+    examples: '`{guildprefix}ban @Paulé Non resect du règlement.`',
+    thumbn: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Forbidden_Symbol.svg/768px-Forbidden_Symbol.svg.png'
 }
 
 exports.conf = {
-    enabled: true,
+    enabled: false,
     guildOnly: true,
     aliases: []
 }

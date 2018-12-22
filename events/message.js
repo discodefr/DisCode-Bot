@@ -1,12 +1,14 @@
 const config = require('../config.json')
+const fs = require('fs')
 
 exports.run = (client, message) => {
 
     if(message.author.bot) return;
+    client.prefdb = JSON.parse(fs.readFileSync('./databases/prefixes.json', "utf8"))
 
     var prefix;
-	if (message.channel.type === `dm` || !client.prefixes.has(message.guild.id)) prefix = `&`
-    else prefix = client.prefixes.get(message.guild.id);
+	if (message.channel.type === `dm` || !client.prefdb[message.guild.id]) prefix = config.prefix
+    else prefix = client.prefdb[message.guild.id].prefix;
 
     if(message.content.toLowerCase() === "<@484734900461895681> prefix") {
         message.channel.send(`Mon prefix sur ce serveur est \`${prefix}\` !`)

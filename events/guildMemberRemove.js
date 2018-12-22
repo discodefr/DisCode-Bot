@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 exports.run = (client, member) => {
 
-    if(!client.logschannels.has(member.guild.id)) return;
+    /*if(!client.logschannels.has(member.guild.id)) return;
     const log = client.logschannels.get(member.guild.id, `channelid`)
     const logs = member.guild.channels.get(log)
 
@@ -13,5 +13,5 @@ exports.run = (client, member) => {
         .addField(`<@${member.user.id}>`, `(${member.user.tag})`)
         .setTimestamp()
         .setFooter(`ID : ${member.user.id}`)
-    logs.send(joinlogsembed)
+    logs.send(joinlogsembed)*/
 }
