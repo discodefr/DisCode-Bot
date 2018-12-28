@@ -8,8 +8,10 @@ exports.run = (client, message, args) => {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
+    if(!args[0]) return message.channel.send("Merci de préciser une ville, ou un village.")
+
     weather.find({search: args.join(' '), degreeType: 'C'}, function(err, result) {
-        if(err) message.channel.send(err);
+        if(err) console.log(err);
 
         if(result.length === 0) {
             message.channel.send("Localisation non valable. Merci de fournir plus de détails (Numéro ou nom de département...).")
@@ -29,7 +31,7 @@ exports.run = (client, message, args) => {
 
         let weatherembd = new Discord.RichEmbed()
             .setColor('186bbe')
-            .setTitle("Météo à " + location.name.capitalize(), true)
+            .setAuthor("Météo à " + location.name.capitalize(), 'https://www.sltrib.com/resources/assets/img/forecast_icons/weathericons_partly-cloudy-day.png')
             .addField('Jour', current.day.capitalize(), true)
             .addField('Date', datefr, true)
             .addField("Température", current.temperature + "°C", true)

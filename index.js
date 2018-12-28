@@ -11,11 +11,15 @@ client.modlogchannels = new Enmap({name: "mdlogschnl"})
 client.logschannels = new Enmap({name: "logschannels"})
 client.suggestchannels = new Enmap({name: "suggestchannels"})*/
 
+client.prefdb = JSON.parse(fs.readFileSync('./databases/prefixes.json', "utf8"))
+client.suggestchannels = JSON.parse(fs.readFileSync('./databases/suggestchannels.json', "utf8"))
+client.modlogchannels = JSON.parse(fs.readFileSync('./databases/mlchannels.json', 'utf8'))
+
 client.ecolor = "186bbe"
 
 
 fs.readdir("./events/", (e, files) => {
-  if (e) return console.error(err);
+  if (e) return console.error(e);
   files.forEach(file => {
     let eventFunction = require(`./events/${file}`);
     let eventName = file.split(".")[0];

@@ -39,7 +39,7 @@ exports.run = (client, message, args) => {
         message.channel.send(defineduser.user.tag + " a été banni du serveur.")
         defineduser.ban()
 
-        const modlog = client.modlogchannels.getProp(message.guild.id, `channelid`)
+        /*const modlog = client.modlogchannels.getProp(message.guild.id, `channelid`)
         const logcha = message.guild.channels.find(cha => cha.id === modlog)
         if(!client.modlogchannels.has(message.guild.id)) return;
         else {
@@ -53,7 +53,7 @@ exports.run = (client, message, args) => {
                 .setThumbnail(defineduser.user.avatarURL)
                 .setFooter(client.user.username, client.user.avatarURL)
             logcha.send(mdlgmsg)
-        }
+        }*/
     })
 }
 
@@ -66,7 +66,7 @@ exports.help = {
 }
 
 exports.conf = {
-    enabled: false,
+    enabled: true,
     guildOnly: true,
     aliases: []
 }

@@ -1,11 +1,10 @@
-exports.run = (client, guild) => {
-    if(!client.prefixes.has(guild.id)) return;
-    if(!client.modlogchannels.has(guild.id)) return;
-    if(!client.logschannels.has(guild.id)) return;
-    if(!client.suggestchannels.has(guild.id)) return;
+const fs = require("fs")
 
-    client.prefixes.delete(guild.id);
-    client.modlogchannels.delete(guild.id);
-    client.logschannels.delete(guild.id);
-    client.suggestchannels.delete(guild.id)
+exports.run = (client, guild) => {
+    if(client.prefdb[guild.id]) {
+        client.prefdb[guild.id] = undefined
+    } else return;
+    fs.writeFileSync('./databases/prefixes.json', JSON.stringify(client.prefdb, null, 2), (err) => {
+        console.log(err)
+    })
 }

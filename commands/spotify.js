@@ -16,9 +16,8 @@ String.prototype.capitalize = function() {
 }
 
 exports.run = (client, message, args) => {
+    const guildprefix = client.prefdb[message.guild.id].prefix
 
-    client.suggestchannels = JSON.parse(fs.readFileSync('./databases/suggestchannels.json', "utf8"))
-    var guildprefix = client.prefdb[message.guild.id].prefix;
     var reg = /{guildprefix}/gi;
     if(!args[0]) {
         let h = exports.help
@@ -162,6 +161,8 @@ exports.run = (client, message, args) => {
         if(!args[1]) return message.channel.send("Merci de préciser le nom d'un artiste.")
 
         spotify.search({type: 'artist', query: qart}, function(err, artist) {
+
+            if(args[1] === "Jul") message.channel.send('T\'écoutes ça ? T\'es un beauf')
 
             var genres = artist.artists.items[0].genres.join(', ').capitalize()
             var sqarte = new Discord.RichEmbed()

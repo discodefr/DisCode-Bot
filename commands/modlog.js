@@ -6,16 +6,16 @@ exports.run = (client, message, args) => {
 
     if(!args[0]) {
 
-        var guildprefix = client.prefixes.get(message.guild.id);
+        var guildprefix = client.prefdb[message.guild.id].prefix
 
-        if(!client.modlogchannels.has(message.guild.id)) return message.channel.send("Ce serveur n'a pas de salon de modlogs défini. Faites `" + guildprefix + "log channel #channel` pour en définir un.")
-        const chaid = client.modlogchannels.get(message.guild.id, "channelid")
-        if(client.modlogchannels.has(message.guild.id)) return message.channel.send(`Le salon de modlogs est déjà défini en <#${chaid}> sur ce serveur. Pour le changer, faites \`${guildprefix}logs channel #channel\`.`)
+        if(!client.modlogchannels[message.guild.id]) return message.channel.send("Ce serveur n'a pas de salon de modlogs défini. Faites `" + guildprefix + "log channel #channel` pour en définir un.")
+        const chaid = client.modlogchannels[message.guild.id].channelid
+        if(client.modlogchannels[message.guild.id]) return message.channel.send(`Le salon de modlogs est défini en <#${chaid}> sur ce serveur. Pour le changer, faites \`${guildprefix}logs channel #channel\`.`)
 
     }
     if(args[0] === "disable") {
-        if(!client.modlogchannels.has(message.guild.id)) return message.channel.send(`${message.author.username}, un channel de logs de modération n'est pas défini sur ce serveur, vous n'avez donc pas besoin d'effectuer cette commande.`)
-        client.modlogchannels.delete(message.guild.id)
+        if(!client.modlogchannels[message.guild.id]) return message.channel.send(`${message.author.username}, un channel de logs de modération n'est pas défini sur ce serveur, vous n'avez donc pas besoin d'effectuer cette commande.`)
+        client.modlogchannels[message.guild.id] = undefined;
         return message.channel.send("Channel de logs de modération désactivé.")
     }
 
@@ -39,10 +39,10 @@ exports.run = (client, message, args) => {
         }   
 
         message.channel.send(`Salon de sanctions défini en <#${chnl.id}>.`)
-        client.modlogchannels.set(message.guild.id, {
+        client.modlogchannels[message.guild.id]= {
             channelname: chnl.name,
             channelid: chnl.id
-        })
+        }
     }
 }
 

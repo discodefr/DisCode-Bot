@@ -21,14 +21,14 @@ if (!message.member.hasPermission(`MANAGE_MESSAGES`)) return message.channel.sen
                     message.channel.send(`${numa - 1} message supprimé !`).then(sentMessage => {
                         setTimeout(() => {
                             sentMessage.delete();
-                        }, 3000)
+                        }, 2000)
                     });
                 }
                 else {
                     message.channel.send(`${numa - 1} messages supprimés !`).then(sentMessage => {
                         setTimeout(() => {
                             sentMessage.delete();
-                        }, 3000)
+                        },700)
                     });
                 };
             };

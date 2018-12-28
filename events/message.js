@@ -3,8 +3,7 @@ const fs = require('fs')
 
 exports.run = (client, message) => {
 
-    if(message.author.bot) return;
-    client.prefdb = JSON.parse(fs.readFileSync('./databases/prefixes.json', "utf8"))
+    if(message.author.bot || message.author.id === client.user.id || message.channel.type === 'group') return;
 
     var prefix;
 	if (message.channel.type === `dm` || !client.prefdb[message.guild.id]) prefix = config.prefix
@@ -16,8 +15,8 @@ exports.run = (client, message) => {
 
     if (!message.content.startsWith(prefix)) return;
 
-    var command = message.content.split(` `)[0].slice(prefix.length).toLowerCase();
-	var args = message.content.split(` `).slice(1);
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
 	var cmd;
 	if (client.commands.has(command)) {
 		cmd = client.commands.get(command);
@@ -25,7 +24,7 @@ exports.run = (client, message) => {
         cmd = client.commands.get(client.aliases.get(command));
     } else if (!client.aliases.has(command)) return;
 
-    if (cmd.conf.enabled === false) return message.channel.send(`Commande désactivée.`);
+    if (cmd.conf.enabled === false) return message.channel.send(`Commande désactivée... :zzz:`);
     if (cmd.conf.guildOnly === true && message.channel.type === `dm`) return message.channel.send(`Commande réservée aux serveurs !`);
 
     if (cmd) {

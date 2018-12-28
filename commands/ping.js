@@ -1,5 +1,7 @@
-exports.run = (client, message) => {
-    message.channel.send('Pong ! `' + ` ${client.ping} ` + '` ms' + ' :ping_pong:')
+exports.run = (client, message, msg) => {
+
+    const ping = client.ping
+    message.channel.send('Pong ! `' + ` ${ping} ` + '` ms' + ' :ping_pong:')
 }
 
 exports.help = {

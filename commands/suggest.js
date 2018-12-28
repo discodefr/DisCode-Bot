@@ -5,8 +5,6 @@ moment.locale("fr")
 
 exports.run = (client, message, args) => {
     
-    client.prefdb = JSON.parse(fs.readFileSync('./databases/prefixes.json', "utf8"))
-    client.suggestchannels = JSON.parse(fs.readFileSync('./databases/suggestchannels.json', "utf8"))
     var guildprefix = client.prefdb[message.guild.id].prefix;
 
     String.prototype.capitalize = function() {
@@ -30,7 +28,7 @@ exports.run = (client, message, args) => {
         return message.channel.send("Channel de suggestions désactivé.")
     }
 
-    if(args[0] === "channel") {
+    if(args[0] === "channel" || "enable") {
 
         if(!args[1] && !client.suggestchannels[message.guild.id]) return message.channel.send(`${message.author.username}, merci de préciser le channel à configurer.`)
 
@@ -66,7 +64,7 @@ exports.run = (client, message, args) => {
         });
 
         return;
-    }
+    } else {
 
 
     if(!client.suggestchannels[message.guild.id]) return message.channel.send("Les suggestions ne sont pas activées sur ce serveur.")
@@ -97,6 +95,7 @@ exports.run = (client, message, args) => {
             })
         })
     })
+}
 }
 
 exports.help = {

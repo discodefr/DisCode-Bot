@@ -31,7 +31,7 @@ exports.run = (client, message, args) => {
         let chacreadatef = moment(chacreadate).format("DD/MM/YY HH:mm:ss");
         let chacreadatefr = chacreadatef.substring(0,1).toLocaleUpperCase() + chacreadatef.substring(1);
         let channelembd = new Discord.RichEmbed()
-            .setTitle('Informations sur le channel')
+            .setAuthor('Informations sur le channel', message.guild.iconURL)
             .setColor('186bbe')
             .addField('Nom du channel', "#" + chnl.name, true)
             .addField('ID du channel', chnl.id, true)
