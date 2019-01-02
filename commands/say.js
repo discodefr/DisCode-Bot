@@ -5,10 +5,9 @@ exports.run = (client, message, args) => {
 
     else{
         let sayMessage = args.join(" ")
-        // var role;
-        // var regexid = /(\d{18})/g
-       // if(sayMessage.includes("<&" + regexid + ">")) { role = "<&" + }
-        message.channel.send(sayMessage, {disableEveryone:true})
+
+        var r = /[<@&]+(\d{18})[>]+/g
+        message.channel.send(sayMessage.replace(r, '<role>'), {disableEveryone:true})
     }
 }
 
@@ -18,7 +17,7 @@ exports.help = {
 }
 
 exports.conf = {
-    enabled: false,
+    enabled: true,
     guildOnly: false,
     aliases: ["s"]
 }

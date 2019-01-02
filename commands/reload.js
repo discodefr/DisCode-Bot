@@ -1,4 +1,4 @@
-const reload = require(`../functions/reload`)
+const reload = require(`../files/reload`)
 
 exports.run = (client, message, args) => {
     
