@@ -3,7 +3,6 @@ const h = require('hastebin-generator')
 
 exports.run = (client, message, args) => {
 
-    if(!args[0]) return message.channel.send('Dites moi une commande du bot pour que je vous montre le code !')
     let command;
     if (client.commands.has(args[0])) {
         command = args[0];
@@ -30,11 +29,14 @@ exports.run = (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
+    requiredArgs: true,
     aliases: ["c"],
 };
 
 exports.help = {
     name: "code",
-    description: "Montre le code d'une commande.",
-    usage: "code [cmd]"
+    description: "Montre le code d'une commande du bot.",
+    utilis: "Pour connaître le code d'un commande, faites\n\n`{guildprefix}code (commande ou alias)`\n\n*Peut retourner un hastebin si le code est trop long*",
+    examples: "`{guildprefix}code fortnite`\n`{guildprefix}code ftn`",
+    thumbn: "https://pastebin.com/i/pastebin_logo_side_outline.png"
 };

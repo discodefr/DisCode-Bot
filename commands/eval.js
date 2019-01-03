@@ -52,7 +52,11 @@ exports.run = (client, message, args) => {
 };
 
 exports.help = {
-    name: "eval"
+    name: "eval",
+    description: "lol",
+    utilis: "lol",
+    examples: "lol",
+    thumbn: "LOL"
 }
 
 exports.conf = {

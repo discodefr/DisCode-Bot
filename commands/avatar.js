@@ -32,14 +32,15 @@ exports.run = (client, message, args) => {
 
 exports.help = {
     name: "avatar",
-    description: 'Renvoie l\'avatar de l\'utilisateur précisé.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*',
+    description: 'Renvoie l\'avatar de l\'utilisateur précisé.',
     utilis: 'Pour renvoyer l\'avatar d\'un utilisateur, faites\n\n`{guildprefix}avatar (@user || user#1234 || id de l\'user)`',
-    examples: '`{guildprefix}avatar (Paulé#8182 || @Paulé || 376812375795302402)`',
+    examples: '`{guildprefix}avatar (@Paulé || Paulé#8182 || 376812375795302402)`',
     thumbn: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1024px-Circle-icons-profile.svg.png'
 }
 
 exports.conf = {
     enabled: true,
     guildOnly: true,
+    requiredArgs: false,
     aliases: ["pfp", "pp"]
 }

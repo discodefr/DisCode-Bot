@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const fs = require('fs')
+const config = require('../config.json')
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -7,13 +7,14 @@ String.prototype.capitalize = function() {
 
 exports.run = (client, message, args) => {
 
-    client.suggestchannels = JSON.parse(fs.readFileSync('./databases/suggestchannels.json', "utf8"))
-    var guildprefix = client.prefdb[message.guild.id].prefix;
+    var prefix;
+	if (message.channel.type === `dm` || !client.prefdb[message.guild.id]) prefix = config.prefix
+    else prefix = client.prefdb[message.guild.id].prefix;
+    var guildprefix = prefix
     var reg = /{guildprefix}/gi;
     let command = args.join(' ');
-    if(command === "eval") return;
     if(client.commands.has(command) || client.aliases.has(command)) {
-        if(command === "eval.js") return;
+        if(command === "eval"|| command === "reload" || command === "ev") return;
         command = client.commands.get(command) || client.commands.get(client.aliases.get(command));
         let h = command.help
         let c = command.conf
@@ -27,7 +28,7 @@ exports.run = (client, message, args) => {
             .setAuthor(`Commande : ${h.name}`, h.thumbn)
             .setColor(client.ecolor)
             .setThumbnail(h.thumbn)
-            .setDescription(h.description)
+            .setDescription(h.description + '\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*')
             .addField(`Utilisation`, h.utilis.replace(reg, guildprefix))
             .addField('Exemples', h.examples.replace(reg, guildprefix))
             .addField(a, c.aliases.join(', ') ? c.aliases.join(', ') : "Pas d'alias pour cette commande.")
@@ -44,5 +45,6 @@ exports.help = {
 exports.conf = {
     enabled: true,
     guildOnly: false,
+    requiredArgs: false,
     aliases: ["h", "aide"]
 }

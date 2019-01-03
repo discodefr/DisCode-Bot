@@ -25,7 +25,10 @@ exports.run = (client, message, args) => {
     
 }
 exports.help = {
-    name: "id"
+    name: "id",
+    description: "Envoie l'id de l'utilisateur précisé.",
+    utilis: "Pour obtenir l'id d'un utilisateur, faites\n\n`{guildprefix}id (mention d'utilisateur ou username)`",
+    
 }
 
 exports.conf = {

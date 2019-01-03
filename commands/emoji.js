@@ -8,7 +8,6 @@ exports.run = (client, message, args) => {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
-    if (!args[0]) return message.channel.send("Merci de rentrer un emoji.")
     if (message.guild.emojis.some(em => em.name === args[0])) var emo = message.guild.emojis.find(e => e.name === args[0])
     else {
         let idav = args[0].substr(-19).substring(0, 18)
@@ -40,13 +39,14 @@ exports.run = (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: true,
+    requiredArgs: true,
     aliases: ["e", "emote"],
 };
 
 exports.help = {
     name: "emoji",
-    description: "Montre des informations sur un emoji précisé.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*",
+    description: "Montre des informations sur un emoji précisé.",
     utilis: "Pour avoir des informations sur un emoji, faites :\n\n`{guildprefix}emoji (emoji)`",
-    examples: "`{guildprefix}emoji <:vsc:483265175688970250>`",
+    examples: "`{guildprefix}emoji` <:vsc:483265175688970250>",
     thumbn: "https://p0.storage.canalblog.com/06/21/1301665/99112564_o.png"
 };

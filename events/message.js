@@ -1,5 +1,5 @@
 const config = require('../config.json')
-const fs = require('fs')
+const Discord = require('discord.js')
 
 exports.run = (client, message) => {
 
@@ -26,6 +26,31 @@ exports.run = (client, message) => {
 
     if (cmd.conf.enabled === false) return message.channel.send(`Commande désactivée... :zzz:`);
     if (cmd.conf.guildOnly === true && message.channel.type === `dm`) return message.channel.send(`Commande réservée aux serveurs !`);
+    
+    if(cmd.conf.requiredArgs === true && !args[0]) {
+
+        var guildprefix = prefix
+        var reg = /{guildprefix}/gi;
+        let h = cmd.help
+        let c = cmd.conf
+        var a;
+        if(c.aliases.length === 1 || c.aliases.length === 0) {
+            a = "Alias"
+        } else if(c.aliases.length > 1) {
+            a = "Aliases"
+        }
+        const he = new Discord.RichEmbed()
+            .setAuthor(`Commande : ${h.name}`, h.thumbn)
+            .setColor(client.ecolor)
+            .setThumbnail(h.thumbn)
+            .setDescription(h.description + '\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*')
+            .addField(`Utilisation`, h.utilis.replace(reg, guildprefix))
+            .addField('Exemples', h.examples.replace(reg, guildprefix))
+            .addField(a, c.aliases.join(', ') ? c.aliases.join(', ') : "Pas d'alias pour cette commande.")
+            .setTimestamp()
+            .setFooter(client.user.username, client.user.avatarURL)
+        return message.channel.send(he)
+    }
 
     if (cmd) {
         try {

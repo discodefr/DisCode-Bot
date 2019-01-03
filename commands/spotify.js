@@ -16,30 +16,7 @@ String.prototype.capitalize = function() {
 }
 
 exports.run = (client, message, args) => {
-    const guildprefix = client.prefdb[message.guild.id].prefix
-
-    var reg = /{guildprefix}/gi;
-    if(!args[0]) {
-        let h = exports.help
-        let c = exports.conf
-        if(c.aliases.length === 1) {
-            a = "Alias"
-        } else if(c.aliases.length > 1) {
-            a = "Aliases"
-        }
-        const nn = new Discord.RichEmbed()
-            .setAuthor(`Commande : ${h.name}`, h.thumbn)
-            .setColor(client.ecolor)
-            .setThumbnail(h.thumbn)
-            .setDescription(h.description)
-            .addField(`Utilisation`, h.utilis.replace(reg, guildprefix))
-            .addField('Exemples', h.examples.replace(reg, guildprefix))
-            .addField(a, c.aliases.join(', ') ? c.aliases.join(', ') : "Pas d'alias pour cette commande.")
-            .setTimestamp()
-            .setFooter(client.user.username, client.user.avatarURL)
-        return message.channel.send(nn)
-    }
-
+    
     if(args[0] === "track" || args[0] === "son") {
 
         let qt = args.slice(1).join(' ')
@@ -206,12 +183,13 @@ exports.run = (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
+    requiredArgs: true,
     aliases: ["spotify-search", "spoti-search"]
 }
 
 exports.help = {
     name: "spotify",
-    description: '__Description :__ Effectue une recherche [Spotify](https://open.spotify.com/) d\'un album, un titre ou un artiste.\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*',
+    description: '__Description :__ Effectue une recherche [Spotify](https://open.spotify.com/) d\'un album, un titre ou un artiste.',
     utilis: `Pour rechercher un album, faites \n\n\`{guildprefix}spotify album (le nom de l'album)\`\n\nPour rechercher un titre, faites \n\n\`{guildprefix}spotify track (le nom du tire)\` ou\n\`{guildprefix}spotify son (le nom du titre)\`\n\nPour rechercher un artiste, faites \n\n\`{guildprefix}spotify artist (le nom de l'artiste)\` ou\n\`{guildprefix}spotify artiste (le nom de l'artiste)\` ou\n\`{guildprefix}spotify auteur (le nom de l'artiste)\`\n_ _`,
     examples: `\`{guildprefix}spotify track Believer\`\n\`{guildprefix}spotify album Evolve\`\n\`{guildprefix}spotify artist Imagine Dragons\`\n_ _`,
     thumbn: 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Spotify_logo_sans_texte.svg.png/1024px-Spotify_logo_sans_texte.svg.png'
