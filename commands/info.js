@@ -30,7 +30,7 @@ exports.run = (client, message) => {
             .setTitle(`Informations sur ${client.user.username}`)
             .addField('Développeurs :', "DisCode Team", true)
             .addField('Library :', "Discord.js", true)
-            .addField('Base de données :', "JSON, passage à MySQL bientôt", true)
+            .addField('Base de données :', "JSON, passage à MySQL asap", true)
             .addField("Uptime :", uptime, true)
             .addField("Mémoire utilisée :", Math.round(process.memoryUsage().rss / 1024 / 1024) + " MB", true)
             .setTimestamp(new Date)

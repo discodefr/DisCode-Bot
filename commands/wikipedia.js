@@ -18,27 +18,28 @@ exports.run = (client, message, args) => {
 
     wiki({apiUrl: wikiUrl})
     .search(query)
-    .then(data => {
+    .then((data, err) => {
+        if(!data) return message.channel.send(`Pas de résultats pour la recherche Wikipedia "${query}".`)
+        if(err) return message.channel.send(`Pas de résultats pour la recherche Wikipedia "${query}".`)
         wiki({apiUrl: wikiUrl})
         .page(data.results[0])
         .then(page => {
             page.summary().then(sum => {
                  if(sum) {
+                    const s = sum.split().join("\n\n").substring(0, 1975)
                     const sq = new Discord.RichEmbed()
                         .setColor(client.ecolor)
                         .setAuthor('Wikipedia', exports.help.thumbn)
                         .setTitle(page.raw.title)
-                        .setDescription(sum.substring(0, 1975) + `… [[Lire plus]](${page.raw.fullurl})`)
+                        .setDescription(s + `… [[Lire plus]](${page.raw.fullurl})`)
                         .setFooter(client.user.username, client.user.avatarURL)
                         .setTimestamp()
                     message.channel.send(sq)
                 }
             })
         })
-    })
-    .catch(error => {
-        message.channel.send(`Pas de résultats pour la recherche Wikipedia "${query}".`)
-        console.log(error)
+    }).catch(e => {
+        return message.channel.send(`Pas de résultats pour la recherche Wikipedia "${query}".`)
     })
 }
 

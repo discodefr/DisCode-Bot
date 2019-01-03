@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
     var usr;
 
     if(!args[0]) {
-        usr = message.member
+        return message.channel.send(`${message.author.username}, voici ton id : ${message.author.id}`)
     }
     else if(message.guild.members.some(usr => usr.id === args[0])) {
         usr = message.guild.members.get(args[0])

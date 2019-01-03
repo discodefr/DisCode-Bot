@@ -4,7 +4,7 @@ exports.run = (client, mod, command) => {
 	return new Promise((resolve, reject) => {
 		try {
             
-            delete require.cache[require.resolve(`../commands/${command}`)];
+            delete require.cache[require.resolve(`../commands/${command}.js`)];
             
 			let cmd = require(`../commands/${command}`);
             client.commands.delete(command);

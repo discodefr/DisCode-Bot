@@ -1,4 +1,4 @@
-exports.run = (client, message, msg) => {
+exports.run = (client, message) => {
 
     const ping = client.ping
     message.channel.send('Pong ! `' + ` ${ping} ` + '` ms' + ' :ping_pong:')

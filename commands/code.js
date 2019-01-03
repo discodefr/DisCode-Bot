@@ -2,6 +2,8 @@ const fs = require("fs");
 const h = require('hastebin-generator')
 
 exports.run = (client, message, args) => {
+
+    if(!args[0]) return message.channel.send('Dites moi une commande du bot pour que je vous montre le code !')
     let command;
     if (client.commands.has(args[0])) {
         command = args[0];
