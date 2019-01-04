@@ -22,11 +22,11 @@ exports.run = (client, message, args) => {
     }
 
     var av = new Discord.RichEmbed()
-        .setAuthor("Avatar de " + usr.user.username, usr.user.avatarURL)
+        .setAuthor("Avatar de " + usr.user.username, usr.user.displayAvatarURL)
         .setColor("186bbe")
-        .setImage(usr.user.avatarURL)
+        .setImage(usr.user.displayAvatarURL)
         .setTimestamp()
-        .setFooter(client.user.username, client.user.avatarURL)
+        .setFooter(client.user.username, client.user.displayAvatarURL)
     message.channel.send(av)
 }
 

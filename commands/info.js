@@ -37,8 +37,8 @@ exports.run = (client, message) => {
             .addField('Serveurs :', `${client.guilds.size}`, true)
             .addField('Utilisateurs', client.users.size, true)
             .addField('Version du bot :', package.version, true)
-            .setThumbnail(client.user.avatarURL)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setThumbnail(client.user.displayAvatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
         message.channel.send(info_embed)
 }
 

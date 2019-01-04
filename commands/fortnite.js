@@ -54,7 +54,7 @@ exports.run = (client, message, args) =>  {
             .addField("Moyenne de kills par duo", duo.kills_per_match, true)
             .addField("Nombre de tops 3 en duo", duo.top_3, true)
             .addField("Nombre de tops 5 en duo", duo.top_5, true)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
             .setTimestamp(new Date)
         message.channel.send(fstats)
     }).catch(err => {

@@ -39,8 +39,8 @@ exports.run = (client, message, args) => {
         .addField("Par : ", message.author.username + "#" + message.author.discriminator)
         .addField("Raison : ", raison)
         .setTimestamp(new Date)
-        .setFooter(client.user.username, client.user.avatarURL)
-        .setThumbnail(client.user.avatarURL)
+        .setFooter(client.user.username, client.user.displayAvatarURL)
+        .setThumbnail(client.user.displayAvatarURL)
     let sendembd = defineduser.send(warnmsg)
 
     sendembd.then(() => {
@@ -57,13 +57,13 @@ exports.run = (client, message, args) => {
 
         const mdlgmsg = new Discord.RichEmbed()
             .setColor("FFFF00")
-            .setAuthor(message.author.tag, message.author.avatarURL)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL)
             .addField("Membre sanctionné :", defineduser.user.tag + ` (${defineduser.user.id})`)
             .addField("Action :", "Warn")
             .addField("Raison :", raison)
             .setTimestamp()
-            .setThumbnail(defineduser.user.avatarURL)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setThumbnail(defineduser.user.displayAvatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
             logcha.send(mdlgmsg)
     })
 }

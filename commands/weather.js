@@ -46,7 +46,7 @@ exports.run = (client, message, args) => {
             .addField('Point d\'observation', current.observationpoint, true)
             .setThumbnail(current.imageUrl)
             .setTimestamp(new Date)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
         message.channel.send(weatherembd)
     });
 }

@@ -40,7 +40,7 @@ exports.run = (client, message, args) => {
             .setTimestamp(new Date)
             .addField('Création du channel', chacreadatefr, true)
             .addField('Topic du channel', chnl.topic ? chnl.topic : "Aucun", true)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
         message.channel.send(channelembd)
         
 }

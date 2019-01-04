@@ -7,9 +7,9 @@ exports.run = (client, member) => {
     const logs = member.guild.channels.get(log)
 
     let joinlogsembed = new Discord.RichEmbed()
-        .setAuthor("Départ", member.user.avatarURL)
+        .setAuthor("Départ", member.user.displayAvatarURL)
         .setColor("186bbe")
-        .setThumbnail(member.user.displayAvatarURL)
+        .setThumbnail(member.user.displaydisplayAvatarURL)
         .addField(`<@${member.user.id}>`, `(${member.user.tag})`)
         .setTimestamp()
         .setFooter(`ID : ${member.user.id}`)

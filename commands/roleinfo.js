@@ -33,7 +33,7 @@ exports.run = (client, message, args) => {
     const managed = rl.managed === true ? "<:done:473803590532595712>" : "<:nope:473803719440597003>"
     var rlmbd = new Discord.RichEmbed()
         .setAuthor("Informations sur le rôle " + rl.name, message.guild.iconURL)
-        .setFooter(client.user.username, client.user.avatarURL)
+        .setFooter(client.user.username, client.user.displayAvatarURL)
         .setColor(rl.hexColor)
         .setTimestamp()
         .addField("Nom du rôle ", rl.name, true)

@@ -27,7 +27,7 @@ exports.run = (client, message, args) => {
             .setTitle(`Informations sur l'emoji :`)
             .setColor("186bbe")
             .setThumbnail(emoicn)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
             .addField(`Id`, `\`${emo.id}\``, true)
             .addField(`Nom`, `\`${emo.name}\``, true)
             .addField(`Animé ?`, u, true)

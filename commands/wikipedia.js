@@ -32,7 +32,7 @@ exports.run = (client, message, args) => {
                         .setAuthor('Wikipedia', exports.help.thumbn)
                         .setTitle(page.raw.title)
                         .setDescription(s + `… [[Lire plus]](${page.raw.fullurl})`)
-                        .setFooter(client.user.username, client.user.avatarURL)
+                        .setFooter(client.user.username, client.user.displayAvatarURL)
                         .setTimestamp()
                     message.channel.send(sq)
                 }

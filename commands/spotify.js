@@ -80,7 +80,7 @@ exports.run = (client, message, args) => {
                     .addField('Titre disponible dans', song.tracks.items[0].available_markets.length + " pays", true)
                     .addField('Popularité du titre\nsur une échelle de 0 à 100', song.tracks.items[0].popularity, true)
                     .setTimestamp()
-                    .setFooter(client.user.username, client.user.avatarURL)
+                    .setFooter(client.user.username, client.user.displayAvatarURL)
                 message.channel.send(sqe)
             }
         });
@@ -129,7 +129,7 @@ exports.run = (client, message, args) => {
                     .addField('Nombre de titres dans l\'album', album.albums.items[0].total_tracks, true)
                     .addField('Album disponible dans', album.albums.items[0].available_markets.length + " pays", true)
                     .setTimestamp()
-                    .setFooter(client.user.username, client.user.avatarURL)
+                    .setFooter(client.user.username, client.user.displayAvatarURL)
                 message.channel.send(sqae)
             }
         })
@@ -152,7 +152,7 @@ exports.run = (client, message, args) => {
                 .addField('Genres', genres, true)
                 .addField('Popularité de l\'artiste\nsur une échelle de 0 à 100', artist.artists.items[0].popularity, true)
                 .setTimestamp()
-                .setFooter(client.user.username, client.user.avatarURL)
+                .setFooter(client.user.username, client.user.displayAvatarURL)
             message.channel.send(sqarte)
         })
 
@@ -173,7 +173,7 @@ exports.run = (client, message, args) => {
             .addField('Exemples', h.examples.replace(reg, guildprefix))
             .addField(a, c.aliases.join(', ') ? c.aliases.join(', ') : "Pas d'alias pour cette commande.")
             .setTimestamp()
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
         message.channel.send("Une erreur est survenue, veuillez respecter la syntaxe des commandes.").then(() => {
             return message.channel.send(nn)
         })

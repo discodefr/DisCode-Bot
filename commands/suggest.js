@@ -81,12 +81,12 @@ exports.run = (client, message, args) => {
     let xmark = neutreemoteguild.emojis.find(emoji => emoji.name === "xmark")
     var suggestembed = new Discord.RichEmbed()
         .setColor("186bbe")
-        .setAuthor(`Nouvelle suggestion par ${message.author.tag} !`, message.author.avatarURL)
+        .setAuthor(`Nouvelle suggestion par ${message.author.tag} !`, message.author.displayAvatarURL)
         .addField("Date de la suggestion :", datefr)
         .addField("Suggestion :", suggestion)
-        .setThumbnail(message.author.avatarURL)
+        .setThumbnail(message.author.displayAvatarURL)
         .setTimestamp()
-        .setFooter(client.user.username, client.user.avatarURL)
+        .setFooter(client.user.username, client.user.displayAvatarURL)
     cha.send(suggestembed).then(suggestembed => {
     message.channel.send("Votre suggestion a bien été envoyée en <#" + chaid + "> ! ")
     suggestembed.react(check).then(() => {

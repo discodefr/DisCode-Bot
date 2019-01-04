@@ -48,7 +48,7 @@ exports.run = (client, message) => {
             .addField('Exemples', h.examples.replace(reg, guildprefix))
             .addField(a, c.aliases.join(', ') ? c.aliases.join(', ') : "Pas d'alias pour cette commande.")
             .setTimestamp()
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
         return message.channel.send(he)
     }
 

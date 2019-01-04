@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
         return message.channel.send("L'utilisateur demandé n'existe pas. Essayez avec l'identifiant, le nom ou la mention.")
             
     }
-        let usericon = usr.user.avatarURL
+        let usericon = usr.user.displayAvatarURL
         let onthesrv = usr.joinedAt
         const status = { online: `En ligne`, idle: `Absent`, dnd: `Ne pas Déranger`, offline: `Hors-Ligne` };
         let usercreate = usr.user.createdAt
@@ -37,7 +37,7 @@ exports.run = (client, message, args) => {
         var ubot = usr.user.bot === true ? "<:done:473803590532595712>" : "<:nope:473803719440597003>";
         let ui_embed = new Discord.RichEmbed()
             .setColor('186bbe')
-            .setAuthor(`Information sur ` + usr.user.tag, usr.user.avatarURL)
+            .setAuthor(`Information sur ` + usr.user.tag, usr.user.displayAvatarURL)
             .addField('Username', usr.user.username)
             .addField('Discriminateur', "#" + usr.user.discriminator)
             .addField('ID', usr.id)
@@ -48,7 +48,7 @@ exports.run = (client, message, args) => {
             .addField('Date de création du compte', usrfr)
             .addField('Date d\'arrivée sur le serveur', onthesrvfr)
             .setThumbnail(usericon)
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
         message.channel.send(ui_embed)
 }
 

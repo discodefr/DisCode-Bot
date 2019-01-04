@@ -18,7 +18,6 @@ exports.run = (client, message, args) => {
     }
     else if(usr === undefined) {
         return message.channel.send("L'utilisateur demandé n'existe pas. Essayez avec l'identifiant, le nom ou la mention.")
-            
     }
 
     message.channel.send(`${message.author.username}, voici l'id de ${usr.user.tag} : \`${usr.user.id}\`.`)

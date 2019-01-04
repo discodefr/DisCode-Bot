@@ -14,10 +14,10 @@ exports.run = (client, message, args) => {
     if(!args) {
         var wta = new Discord.RichEmbed()
         .setColor("FFA500")
-        .setAuthor("DisCode • L'évaluation a échoué", client.user.avatarURL)
+        .setAuthor("DisCode • L'évaluation a échoué", client.user.displayAvatarURL)
         .setDescription("Une erreur est survenue.")
         .addField(":no_entry: Erreur", "``` Arguments manquants ```")
-        .setFooter(client.user.username, client.user.avatarURL)
+        .setFooter(client.user.username, client.user.displayAvatarURL)
         .setTimestamp()
     return message.channel.send(wta)
     }
@@ -31,21 +31,21 @@ exports.run = (client, message, args) => {
             }).catch(console.error);
         } else {
                 var done = new Discord.RichEmbed()
-                    .setAuthor("DisCode • Evaluation réussie.", client.user.avatarURL)
+                    .setAuthor("DisCode • Evaluation réussie.", client.user.displayAvatarURL)
                     .setColor("FFA500")
                     .addField(":inbox_tray: Entrée", "```" + args + "```")
                     .addField(":outbox_tray: Sortie", "```" + clean(evaled) + "```")
-                    .setFooter(client.user.username, client.user.avatarURL)
+                    .setFooter(client.user.username, client.user.displayAvatarURL)
                     .setTimestamp()
                 message.channel.send(done)
             }
     } catch (err) {
         var errmbd = new Discord.RichEmbed()
             .setColor("FFA500")
-            .setAuthor("DisCode • L'évaluation a échoué", client.user.avatarURL)
+            .setAuthor("DisCode • L'évaluation a échoué", client.user.displayAvatarURL)
             .setDescription("Une erreur est survenue.")
             .addField(":no_entry: Erreur", "```" + err + "```")
-            .setFooter(client.user.username, client.user.avatarURL)
+            .setFooter(client.user.username, client.user.displayAvatarURL)
             .setTimestamp()
         message.channel.send(errmbd)
     }
