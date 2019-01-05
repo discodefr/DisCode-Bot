@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
         .then(page => {
             page.summary().then(sum => {
                  if(sum) {
-                    const s = sum.split("\n").join("\n\n").substring(0, 1975)
+                    const s = sum.split("\n").join("\n\n").substring(0, 1980)
                     const sq = new Discord.RichEmbed()
                         .setColor(client.ecolor)
                         .setAuthor('Wikipedia', exports.help.thumbn)
@@ -46,10 +46,14 @@ exports.run = (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
+    requiredArgs: true,
     aliases: ['wiki']
 }
 
 exports.help = {
     name: "wikipedia",
+    description: "Effectue une recherche Wikipedia.",
+    utilis: "Pour effectuer une recherche Wikipedia, faites :\n\n`{guildprefix}wikipedia [langue] (recherche)`\n\n*Note : la langue par défaut est le français.\nLes langues disponibles sont :*\n```asciidoc\n= es = : Espagnol,\n= it = : Italien,\n= en = : Anglais```",
+    examples: "`{guildprefix}wikipedia Mickael Jackson`\n`{guildprefix}wikipedia es Buenos Aires`\n`{guildprefix}wikipedia en London`",
     thumbn: 'https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png'
 }

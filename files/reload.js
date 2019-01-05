@@ -1,4 +1,4 @@
-exports.run = (client, mod, command) => {
+exports.run = (client, command) => {
 
     
 	return new Promise((resolve, reject) => {

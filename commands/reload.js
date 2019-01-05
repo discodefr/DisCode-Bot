@@ -21,14 +21,12 @@ exports.run = (client, message, args) => {
 	if (!command) {
 		return message.channel.send(`Cette commande existe pas...`);
 	} else {
-        
 
-        mod = client.commands.get(command).help.module;
         
 		message.channel.send(`Reload de \`${command}\`...`)
 			.then(m => {
                 
-				reload.run(client, mod, command)
+				reload.run(client, command)
 					.then(() => {
                         
                         m.edit(`Commande \`${command}\` reloaded avec succès ! <:noel:464406165791440899>`)
