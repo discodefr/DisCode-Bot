@@ -10,7 +10,7 @@ exports.run = (client, message) => {
 
     const guildIcon = "https://cdn.discordapp." + message.guild.iconURL.split(".")[2] + ".png"
 
-    var orderroles = message.guild.roles.sort((x,y)=> y.position - x.position).map(role=> role.name).join(', ');
+    var orderroles = message.guild.roles.sort((x, y) => y.position - x.position).map(role => role.name).join(', ');
     if(orderroles.length > 1000) {
         orderroles = `Trop de rôles. (${message.guild.roles.array().length} roles)`
     }
