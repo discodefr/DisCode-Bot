@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
         .then(page => {
             page.summary().then(sum => {
                  if(sum) {
-                    const s = sum.split().join("\n\n").substring(0, 1975)
+                    const s = sum.split("\n").join("\n\n").substring(0, 1975)
                     const sq = new Discord.RichEmbed()
                         .setColor(client.ecolor)
                         .setAuthor('Wikipedia', exports.help.thumbn)
