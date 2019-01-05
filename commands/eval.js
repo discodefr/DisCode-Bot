@@ -1,6 +1,5 @@
 const { hastebin } = require('eval-overflow');
 const Discord = require('discord.js')
-const ownersids = ["376812375795302402"]
 
 function clean(text) {
     if (typeof(text) === 'string') return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -9,7 +8,7 @@ function clean(text) {
 
 exports.run = (client, message, args) => {
 
-    if (!ownersids.includes(message.author.id)) return;
+    if (message.author.id !== "376812375795302402") return;
     args = args.join(" ");
     if(!args) {
         var wta = new Discord.RichEmbed()
