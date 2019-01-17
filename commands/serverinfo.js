@@ -8,7 +8,7 @@ exports.run = (client, message) => {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
-    const guildIcon = "https://cdn.discordapp." + message.guild.iconURL.split(".")[2] + ".png"
+    const guildIcon = message.guild.iconURL.split('.jpg')[0] + '.png'
 
     var orderroles = message.guild.roles.sort((x, y) => y.position - x.position).map(role => role.name).join(', ');
     if(orderroles.length > 1000) {

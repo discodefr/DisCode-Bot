@@ -13,9 +13,12 @@ exports.run = (client, message) => {
         message.channel.send(`Mon prefix sur ce serveur est \`${prefix}\` !`)
     }
 
-    if (!message.content.startsWith(prefix)) return;
+    const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+    const rprefix = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : prefix;
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    if (!message.content.startsWith(rprefix)) return;
+
+    const args = message.content.slice(rprefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 	var cmd;
 	if (client.commands.has(command)) {
