@@ -17,11 +17,14 @@
     "hastebin-generator": "^1.1.4",
     "mathjs": "^5.1.1",
     "moment": "^2.22.2",
+    "node-fetch": "^2.3.0",
     "node-spotify-api": "^1.0.7",
     "package-json": "^5.0.0",
     "playstore-api": "^1.0.1",
+    "request-promise": "^4.2.2",
     "spotify": "^0.3.0",
     "weather-js": "^2.0.0",
-    "wikijs": "^4.10.1"
+    "wikijs": "^4.10.1",
+    "xml2js": "^0.4.19"
   }
 }

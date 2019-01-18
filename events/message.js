@@ -10,7 +10,7 @@ exports.run = (client, message) => {
     else prefix = client.prefdb[message.guild.id].prefix;
 
     if(message.content.toLowerCase() === "<@484734900461895681> prefix") {
-        message.channel.send(`Mon prefix sur ce serveur est \`${prefix}\` !`)
+        return message.channel.send(`Mon prefix sur ce serveur est \`${prefix}\` !`)
     }
 
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
