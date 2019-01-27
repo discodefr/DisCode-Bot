@@ -17,7 +17,7 @@ exports.run = (client, message, args) => {
         json: true
     }
 
-    message.channel.send(`Obtention des paroles de "${q}"...`)
+    message.channel.send(`Obtention des paroles de "${q}"`)
     .then(m => {
         rp(optionsGeniusSearch).then(
             function(body) {
@@ -46,14 +46,11 @@ exports.run = (client, message, args) => {
                                 var lyrics = $('.lyrics').text()
                                 
                                 var para = lyrics.split('\n\n')
+
                                 m.delete()
-                                for(i=0; i< para.length - 1; i++) {
-                                    message.channel.send(para[i] + "\n\n")
+                                for(i=0; i < para.length - 1; i++) {
+                                    message.channel.send(`${para[i]}\n_ _`)
                                 }
-                                const e = new Discord.RichEmbed()
-                                    .setAuthor(title, thumbnail)
-                                    .setThumbnail(banner)
-                                    .setDescription(lyrics.substring(0, 2030))
                             })
                         }
                     )
@@ -72,5 +69,6 @@ exports.help = {
 exports.conf = {
     enabled: true,
     guildOnly: true,
-    aliases: []
+    requiredArgs: true,
+    aliases: ["paroles"]
 }

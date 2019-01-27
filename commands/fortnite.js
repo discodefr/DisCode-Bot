@@ -12,6 +12,13 @@ exports.run = (client, message, args) =>  {
     if(!platforms.includes(pl)) return message.channel.send("La plateforme que vous avez précisé n'est pas valide.\nVeuillez préciser une plateforme valide parmi les suivantes :\n`psn` pous PlayStation,\n`xbl` pour Xbox,\n`pc` pour ordinateur")
 
     fortnite.user(user, pl).then((result, err) => {
+
+        if(err) {
+            const rg = client.guilds.get('467258216485617664')
+            const rc= rg.channels.get('530375912118681610')
+            message.channel.send("L'utilisateur que vous avez demandé n'existe pas sur cette plateforme.")
+            rc.send(`Erreur sur la commande fortnite :\n\n\`\`\`${err.toString()}\`\`\``)
+        }
         var av;
 
         if(result.platform === "PlayStation 4") {
@@ -57,11 +64,6 @@ exports.run = (client, message, args) =>  {
             .setFooter(client.user.username, client.user.displayAvatarURL)
             .setTimestamp(new Date)
         message.channel.send(fstats)
-    }).catch(err => {
-        const rg = client.guilds.get('467258216485617664')
-        const rc= rg.channels.get('530375912118681610')
-        message.channel.send("L'utilisateur que vous avez demandé n'existe pas sur cette plateforme.")
-        rc.send(`Erreur sur la commande fortnite :\n\n\`\`\`${err.toString()}\`\`\``)
     })
 }
 
