@@ -63,7 +63,11 @@ exports.run = (client, message, args) => {
 }
 
 exports.help = {
-    name: "lyrics"
+    name: "lyrics",
+    description: "Renvoie les paroles d'une chanson précisée.",
+    utilis: "Pour obtenir les paroles d'une chanson, faites\n\n`{guildprefix}lyrics (chanson)`",
+    examples: "`{guildprefix}lyrics Wake me up`",
+    thumbn: 'https://static1.squarespace.com/static/50dd8021e4b0c2f49763b75d/t/598cd3bddb29d6de931000c0/1502401538369/LyricsView.png'
 }
 
 exports.conf = {

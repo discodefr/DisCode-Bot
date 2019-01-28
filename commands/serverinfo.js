@@ -55,7 +55,10 @@ exports.run = (client, message) => {
 
 exports.help = {
     name: "serverinfo",
-    description: "Donner des informations sur le serveur."
+    description: "Donne des informations sur le serveur actuel",
+    utilis: 'Pour se servir de cette commande, faites\n\n`{guildprefix}serverinfo`',
+    examples: '{guildprefix}serverinfo',
+    thumbn: 'https://p0.storage.canalblog.com/06/21/1301665/99112564_o.png'
 }
 
 exports.conf = {

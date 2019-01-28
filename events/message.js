@@ -60,7 +60,9 @@ exports.run = (client, message) => {
         cmd.run(client, message, args);
         }
         catch (e) {
-            console.error(e.stack);
+            const rg = client.guilds.get('467258216485617664')
+            const rc= rg.channels.get('530375912118681610')
+            rc.send(`Erreur sur la commande ${cmd} :\n\n\`\`\`${e.stack.toString()}\`\`\``)
             message.channel.send(`Une erreur est survenue. Si le problème persiste, merci de contacter le support du bot ou d'effectuer la commande ${prefix}report {votre report}.`);
         }
     };

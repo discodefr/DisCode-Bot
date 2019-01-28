@@ -1,17 +1,9 @@
 exports.run = (client, message) => {
 
-    const ping = client.ping.toString().split(".")[0]
-    var aftercomma;
-    if(!client.ping.toString().includes(".")) {
-        return;
-    } else if(client.ping.toString().includes(".")) {
-        aftercomma = "." + client.ping.toString().split(".")[1].slice(0, 3)
-    }
-
-    const rping = ping + aftercomma
+    const ping = client.ping.toString().substring(0, 6)
 
     message.channel.send('Pinging...').then(m => {
-        m.edit('Pong ! `' + ` ${rping} ` + '` ms' + ' :ping_pong:')
+        m.edit('Pong ! `' + ` ${ping} ` + '` ms' + ' :ping_pong:')
     });
 }
 
