@@ -1,7 +1,6 @@
 const rp = require('request-promise')
 const fetch = require('node-fetch')
 const cheerio = require('cheerio')
-const Discord = require('discord.js')
 const config = require('../config.json')
 
 exports.run = (client, message, args) => {

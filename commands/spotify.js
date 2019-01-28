@@ -164,18 +164,26 @@ exports.run = (client, message, args) => {
         } else if(c.aliases.length > 1) {
             a = "Aliases"
         }
-        const nn = new Discord.RichEmbed()
+        var guildprefix = client.prefdb[message.guild.id] ? client.prefdb[message.guild.id] : '&'
+        var reg = /{guildprefix}/gi;
+        var a;
+        if(c.aliases.length === 1 || c.aliases.length === 0) {
+            a = "Alias"
+        } else if(c.aliases.length > 1) {
+            a = "Aliases"
+        }
+        const he = new Discord.RichEmbed()
             .setAuthor(`Commande : ${h.name}`, h.thumbn)
             .setColor(client.ecolor)
             .setThumbnail(h.thumbn)
-            .setDescription(h.description)
+            .setDescription(h.description + '\n*__Note :__ Le texte entre parenthèses est obligatoire, et le texte entre crochets est optionnel.*')
             .addField(`Utilisation`, h.utilis.replace(reg, guildprefix))
             .addField('Exemples', h.examples.replace(reg, guildprefix))
             .addField(a, c.aliases.join(', ') ? c.aliases.join(', ') : "Pas d'alias pour cette commande.")
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL)
         message.channel.send("Une erreur est survenue, veuillez respecter la syntaxe des commandes.").then(() => {
-            return message.channel.send(nn)
+            return message.channel.send(he)
         })
     }
 }
