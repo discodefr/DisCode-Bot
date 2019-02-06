@@ -41,6 +41,8 @@ exports.run = (client, message, args) => {
 
     pollch.send(embed).then(m => {
 
+        message.channel.send('Sondage envoyé !')
+
 		function delay() {
 			return new Promise(resolve => setTimeout(resolve, 500));
         };
@@ -54,9 +56,9 @@ exports.run = (client, message, args) => {
         
 		async function processArray(rt) {
 
-			for (const emote of rt) {
+			for(const emote of rt) {
 
-				await delayedReact(emote);
+                await delayedReact(emote);
 			};
 		};
 		processArray(rt)

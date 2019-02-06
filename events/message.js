@@ -31,7 +31,7 @@ exports.run = (client, message) => {
     if (cmd.conf.guildOnly === true && message.channel.type === `dm`) return message.channel.send(`Commande réservée aux serveurs !`);
     
     if(cmd.conf.requiredArgs === true && !args[0]) {
-
+        if(cmd.help.name === 'poll' && !message.member.hasPermission('ADMINISTRATOR')) return;
         var guildprefix = prefix
         var reg = /{guildprefix}/gi;
         let h = cmd.help
@@ -62,7 +62,7 @@ exports.run = (client, message) => {
         catch (e) {
             const rg = client.guilds.get('467258216485617664')
             const rc= rg.channels.get('530375912118681610')
-            rc.send(`Erreur sur la commande ${cmd.name} :\n\n\`\`\`${e.stack.toString()}\`\`\``)
+            rc.send(`Erreur sur la commande ${cmd.help.name} :\n\n\`\`\`${e.stack.toString()}\`\`\``)
             message.channel.send(`Une erreur est survenue. Si le problème persiste, merci de contacter le support du bot ou d'effectuer la commande ${prefix}report {votre report}.`);
         }
     };

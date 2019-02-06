@@ -16,7 +16,10 @@ exports.run = (client, message, args) => {
         json: true
     }
 
-    message.channel.send(`Obtention des paroles de "${q}"`)
+    const g = client.guilds.get('482269915517026328')
+    const loading = g.emojis.get('542712685909901343')
+
+    message.channel.send(`Obtention des paroles de "${q}" ${loading}`)
     .then(m => {
         rp(optionsGeniusSearch).then(
             function(body) {
@@ -47,6 +50,7 @@ exports.run = (client, message, args) => {
                                 var para = lyrics.split('\n\n')
 
                                 m.delete()
+
                                 for(i=0; i < para.length - 1; i++) {
                                     message.channel.send(`${para[i]}\n_ _`)
                                 }
