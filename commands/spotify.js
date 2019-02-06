@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
 
             if (err) {
                 if(!song) {
-                    return message.channel.send('Merci de rentrer un titre existant. Vérifiez son ortographe.')
+                    return message.channel.send(`Aucun résultat pour la recherche de titre "${qt}" sur Spotify.`)
                 }
 
                 message.channel.send('Une erreur est survenue, désolé de la gêne occasionée.')
@@ -89,15 +89,8 @@ exports.run = (client, message, args) => {
         if(!args[1]) return message.channel.send("Merci de préciser le titre d'un album.")
         
         spotify.search({type: 'album', query: qa}, function(err, album) {
-            if (err) {
-                if(!album) {
-                    return message.channel.send('Merci de rentrer un titre d\'album existant. Vérifiez son ortographe.')
-                }
-
-                message.channel.send('Une erreur est survenue, désolé de la gêne occasionée.')
-                return console.log('Error occurred: ' + err.stack)
-
-            } else {
+            if (err) return message.channel.send(`Aucun résultat pour la recherche d'album "${qa}" sur Spotify.`)
+            else {
                 var artistsa;
                 if(album.albums.items[0].artists.length === 1) {
                     artistsa = "Artiste"
@@ -138,6 +131,8 @@ exports.run = (client, message, args) => {
         if(!args[1]) return message.channel.send("Merci de préciser le nom d'un artiste.")
 
         spotify.search({type: 'artist', query: qart}, function(err, artist) {
+
+            if(err) return message.channel.send('Aucun résultat pour la recherche d\'artiste "' + qart + '" sur Spotify.')
 
             if(args[1] === "Jul") message.channel.send('T\'écoutes ça ? T\'es un beauf')
 
