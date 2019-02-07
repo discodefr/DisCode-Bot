@@ -34,8 +34,7 @@ client.aliases = new Discord.Collection();
 fs.readdir(`./commands`, (e, files) => {
 	if (e) console.error(e);
 	files.forEach(file => {
-		if (file === `module.js`) return
-		let props = require(`./commands//${file}`);
+		let props = require(`./commands/${file}`);
 		console.log(`[${moment().format("DD/MM/YYYY HH:mm:ss")}]   ${props.help.name} chargé.`);
 		client.commands.set(props.help.name, props);
 		props.conf.aliases.forEach(alias => {
