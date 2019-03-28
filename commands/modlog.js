@@ -2,13 +2,13 @@ const Discord = require('discord.js')
 
 exports.run = (client, message, args) => {
 
-    if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return message.channel.send("Vous n'avez pas la permission de définir un channel logs de modération.")
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("Vous n'avez pas la permission de définir un channel logs de modération.")
 
     if(!args[0]) {
 
         var guildprefix = client.prefdb[message.guild.id].prefix
 
-        if(!client.modlogchannels[message.guild.id]) return message.channel.send("Ce serveur n'a pas de salon de modlogs défini. Faites `" + guildprefix + "log channel #channel` pour en définir un.")
+        if(!client.modlogchannels[message.guild.id]) return message.channel.send("Ce serveur n'a pas de salon de modlogs défini. Faites `" + guildprefix + "modlog enable #channel` pour en définir un.")
         const chaid = client.modlogchannels[message.guild.id].channelid
         if(client.modlogchannels[message.guild.id]) return message.channel.send(`Le salon de modlogs est défini en <#${chaid}> sur ce serveur. Pour le changer, faites \`${guildprefix}logs channel #channel\`.`)
 

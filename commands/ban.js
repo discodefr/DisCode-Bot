@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 exports.run = (client, message, args) => {
 
-    if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.channel.send("Vous n'avez pas la permission de bannir des membres.")
+    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Vous n'avez pas la permission de bannir des membres.")
     if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.channel.send("Le bot n'a pas la permission de bannir des membres. Veuillez lui admettre la permission `BAN_MEMBERS`.")
 
     var defineduser;

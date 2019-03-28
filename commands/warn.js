@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
     let cdf = moment(new Date).format(`dddd Do MMMM YYYY, HH:mm:ss`);
     var warndate = cdf.substring(0, 1).toLocaleUpperCase() + cdf.substring(1);
 
-    if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.channel.send("Vous n'avez pas la permission d'avertir des membres.")
+    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Vous n'avez pas la permission d'avertir des membres.")
     if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.channel.send("Le bot n'a pas la permission d'avertir des membres. Veuillez lui admettre la permission `KICK_MEMBERS`.")
 
     var defineduser;

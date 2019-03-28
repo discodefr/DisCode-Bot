@@ -1,6 +1,6 @@
 exports.run = (client, message, args) => {
 
-    if(!message.guild.member(message.author).hasPermission("VIEW_AUDIT_LOG")) return message.channel.send("Vous ne pouvez pas effectuer cette commande.")
+    if(!message.member.hasPermission("VIEW_AUDIT_LOG")) return message.channel.send("Vous ne pouvez pas effectuer cette commande.")
     if(!message.guild.member(client.user).hasPermission("VIEW_AUDIT_LOG")) return message.channel.send("Je ne peux pas voir les audit logs, donc je ne peux pas définir un channel de logs.")
 
     if(!args[0]) {

@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
     }
 
     if(args[0] === "disable") {
-        if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return message.channel.send("Vous ne pouvez pas effectuer cette commande.")
+        if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("Vous ne pouvez pas effectuer cette commande.")
         if(!client.suggestchannels[message.guild.id]) return message.channel.send(`${message.author.username}, un channel de suggestions n'est pas défini sur ce serveur, vous n'avez donc pas besoin d'effectuer cette commande.`)
         client.suggestchannels[message.guild.id] = undefined;
         fs.writeFileSync('./databases/suggestchannels.json', JSON.stringify(client.suggestchannels, null, 2), (err) => { 

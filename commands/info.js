@@ -23,18 +23,18 @@ exports.run = (client, message) => {
 
     let cpu = os.loadavg();
     let u = convMS(client.uptime);
-    let uptime = u.h + "h" + u.m + "m" + u.s + "s"
+    let uptime = u.h + ":" + u.m + ":" + u.s
 
     var info_embed = new Discord.RichEmbed()
             .setColor('186bbe')
-            .setTitle(`Informations sur ${client.user.username}`)
-            .addField('Développeurs :', "DisCode Team", true)
+            .setAuthor(`Informations sur ${client.user.username}`, )
+            .addField('Développeur :', "Paulé", true)
             .addField('Library :', "Discord.js", true)
             .addField('Base de données :', "JSON, passage à MySQL asap", true)
             .addField("Uptime :", uptime, true)
             .addField("Mémoire utilisée :", Math.round(process.memoryUsage().rss / 1024 / 1024) + " MB", true)
             .setTimestamp(new Date)
-            .addField('Serveurs :', `${client.guilds.size}`, true)
+            .addField('Serveurs :', client.guilds.size, true)
             .addField('Utilisateurs', client.users.size, true)
             .addField('Version du bot :', package.version, true)
             .setThumbnail(client.user.displayAvatarURL)
