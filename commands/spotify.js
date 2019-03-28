@@ -159,7 +159,10 @@ exports.run = (client, message, args) => {
         } else if(c.aliases.length > 1) {
             a = "Aliases"
         }
-        var guildprefix = client.prefdb[message.guild.id] ? client.prefdb[message.guild.id] : '&'
+        var guildprefix;
+	    if (message.channel.type === `dm` || !client.prefdb[message.guild.id]) guildprefix = "&"
+        else guildprefix = client.prefdb[message.guild.id].prefix;
+        
         var reg = /{guildprefix}/gi;
         var a;
         if(c.aliases.length === 1 || c.aliases.length === 0) {

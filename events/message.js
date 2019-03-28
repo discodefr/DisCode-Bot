@@ -26,7 +26,7 @@ exports.run = (client, message) => {
 	} else if (client.aliases.has(command)) {
         cmd = client.commands.get(client.aliases.get(command));
     } else if (!client.aliases.has(command)) return;
-
+    
     if (cmd.conf.enabled === false) return message.channel.send(`Commande désactivée... :zzz:`);
     if (cmd.conf.guildOnly === true && message.channel.type === `dm`) return message.channel.send(`Commande réservée aux serveurs !`);
     
